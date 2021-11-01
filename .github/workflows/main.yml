@@ -1,13 +1,28 @@
+name: CI
 on: [push]
 
 jobs:
-  hello_world_job:
+  Build:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Build
     steps:
-      # To use this repository's private action,
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Action step
-        uses: ./ # Uses an action in the root directory
-        id: hello
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: sudo pip install -r requirements.txt
+
+      - name: Execute scripts
+        id: buildModel
+        run: sudo python build_model.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: model.pkl
+          path: model.pkl
