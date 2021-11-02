@@ -5,9 +5,8 @@ import joblib
 from datetime import datetime
 
 
-def create_model():
+def create_model(dataset_path):
     # Get the dataset from the users GitHub repository
-    dataset_path = "../../model/input/creditcard.csv"
     creditcard_data = pd.read_csv(dataset_path)
 
     # Get model
@@ -29,4 +28,4 @@ def create_model():
 
 
 if __name__ == "__main__":
-    create_model()
+    create_model("model/input/creditcard.csv")

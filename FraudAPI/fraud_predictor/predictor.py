@@ -11,7 +11,7 @@ import joblib
 
 def start_predictor(parameter_list: dict):
     dataframe = convert_parameter_list_to_numpy(parameter_list)
-    model_path = get_model_name()
+    model_path = get_model_name("../../model/input/creditcard.csv")
     if not os.path.exists(model_path):
         create_model()
 
