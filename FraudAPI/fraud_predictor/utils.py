@@ -22,3 +22,4 @@ def get_model_name():
     current_month = datetime.now().month
     current_year = datetime.now().year
     model_name = f"model_{current_month}_{current_year}.pkl"
+    return model_name

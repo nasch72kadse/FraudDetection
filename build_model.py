@@ -1,13 +1,13 @@
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
-import pickle
+import joblib
 from datetime import datetime
 
 
 def create_model():
     # Get the dataset from the users GitHub repository
-    dataset_path = "model/input/creditcard.csv"
+    dataset_path = "../../model/input/creditcard.csv"
     creditcard_data = pd.read_csv(dataset_path)
 
     # Get model
@@ -24,8 +24,8 @@ def create_model():
         current_month = datetime.now().month
         current_year = datetime.now().year
         model_name = f"model_{current_month}_{current_year}.pkl"
-        pickle.dump(logistic, open('model.pkl', 'wb'))  # for pipeline
-        pickle.dump(logistic, open(model_name, 'wb'))
+        joblib.dump(logistic, 'model.pkl')
+        joblib.dump(logistic, model_name)
 
 
 if __name__ == "__main__":
